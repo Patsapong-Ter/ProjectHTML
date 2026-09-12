@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อนุมัติการแข่งขัน - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-checkbox:checked {
+            background-color: #7e22ce;
+            border-color: #7e22ce;
+        }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen relative">
+
+    <!-- แถบ Navbar ด้านบน -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="events.html" class="flex items-center gap-2">
+                        <div class="text-2xl">🏃‍♂️</div>
+                        <span class="font-bold text-xl text-purple-900 tracking-wide">Track & Field</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <button onclick="toggleNotification()" class="relative p-2 text-gray-400 hover:text-purple-600 transition rounded-full hover:bg-gray-100 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="absolute top-1.5 right-1.5 flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                                </span>
+                            </button>
+                            <div id="notiDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                                <div class="bg-purple-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                                    <h3 class="font-bold text-purple-900">การแจ้งเตือน</h3>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2 ใหม่</span>
+                                </div>
+                                <div class="max-h-80 overflow-y-auto divide-y divide-gray-50">
+                                    <div class="p-4 bg-red-50/30 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">⏰</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-red-600">ใกล้ถึงเวลารายงานตัว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบตารางแข่งขันของคุณ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">✅</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="profile.html" title="โปรไฟล์ของฉัน">
+                            <img src="https://ui-avatars.com/api/?name=User&background=8B00C8&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-purple-500 shadow-sm hover:scale-105 transition">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-6 overflow-x-auto hide-scrollbar py-3 text-sm font-medium whitespace-nowrap items-center">
+                    <a href="events.html" class="text-gray-500 hover:text-purple-600 transition pb-1">รายการแข่งขัน</a>
+                    <a href="my-applications.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ใบสมัครของฉัน</a>
+                    <a href="registration-form.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ลงทะเบียน/สถานะ</a>
+                    <a href="request-athlete.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ขอสังกัดโรงเรียน</a>
+                    <a href="profile.html" class="text-gray-500 hover:text-purple-600 transition pb-1">Profile</a>
+                    <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
+                    <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
+                    <a href="approve-applications.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">อนุมัติการแข่งขัน</a>
+                    <a href="manage-schools.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการโรงเรียน</a>
+                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
+                    <a href="referee-stats.html" class="text-red-600 hover:text-red-700 transition pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- พื้นที่เนื้อหาหลัก -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">ระบบอนุมัติใบสมัครนักกีฬา</h1>
+            <p class="text-gray-600 font-medium">
+                สังกัดโรงเรียน/ทีม: <span class="text-[#8B00C8] font-bold">โรงเรียนRoblox</span>
+            </p>
+        </div>
+
+        <!-- รายการใบสมัครที่รออนุมัติ -->
+        <div class="space-y-4">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 transition hover:shadow-md">
+                
+                <div class="flex-grow w-full lg:w-auto">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">การแข่งขัน (-)</span>
+                        <span class="text-xs text-gray-400">ยื่นสมัครเมื่อ: 31/7/2569</span>
+                    </div>
+                    
+                    <h2 class="text-lg font-bold text-gray-900 mb-2">ภัสพงษ์ สิริชัยวงศ์สกุล</h2>
+                    
+                    <div class="space-y-1">
+                        <p class="text-sm text-gray-600">
+                            <span class="font-medium text-gray-700">รายการแข่งขันที่เลือก:</span> วิ่งข้ามรั้ว 100 เมตร, วิ่ง 60 เมตร, วิ่ง 80 เมตร, วิ่ง 100 เมตร
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-medium text-gray-700">ที่อยู่:</span> -
+                        </p>
+                    </div>
+                </div>
+
+                <!-- กลุ่มปุ่มจัดการ -->
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto mt-4 lg:mt-0">
+                    <!-- ปุ่มเปิด Modal ดูใบสมัคร -->
+                    <button onclick="openViewModal()" class="flex-1 lg:flex-none border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2.5 rounded-lg text-sm font-medium transition whitespace-nowrap">
+                        ดูใบสมัคร
+                    </button>
+                    <button onclick="openEditModal()" class="flex-1 lg:flex-none border border-yellow-200 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 px-4 py-2.5 rounded-lg text-sm font-medium transition whitespace-nowrap">
+                        ขอให้แก้ไข
+                    </button>
+                    <button class="flex-1 lg:flex-none border border-red-200 bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2.5 rounded-lg text-sm font-medium transition whitespace-nowrap">
+                        ปฏิเสธ
+                    </button>
+                    <button class="flex-1 lg:flex-none bg-[#8B00C8] hover:bg-[#7200A3] text-white px-6 py-2.5 rounded-lg text-sm font-medium shadow-sm transition whitespace-nowrap">
+                        อนุมัติใบสมัคร
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup (Modal) ดูใบสมัครของนักกีฬา -->
+    <!-- ========================================== -->
+    <div id="viewModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+            
+            <!-- หัวข้อ Modal -->
+            <div class="p-6 sm:p-8 border-b border-gray-100 flex justify-between items-start bg-gray-50">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ใบสมัครเข้าร่วมการแข่งขัน</h2>
+                    <p class="text-sm text-gray-500">การแข่งขัน (-)</p>
+                </div>
+                <!-- รูปตัว์การ์ตูน / รูปถ่ายนักกีฬาตามเรฟ -->
+                <div class="w-20 h-24 bg-purple-50 border border-purple-200 rounded-lg flex items-center justify-center shrink-0 overflow-hidden shadow-sm">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Patsapong" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- เนื้อหาภายใน Modal (เลื่อนดูได้) -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-8">
+                
+                <!-- 1. ข้อมูลส่วนตัว -->
+                <div>
+                    <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">1</span>
+                        ข้อมูลส่วนตัว
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">คำนำหน้า</label>
+                            <input type="text" value="นาย" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">ชื่อ - นามสกุล</label>
+                            <input type="text" value="ภัสพงษ์ สิริชัยวงศ์สกุล" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">อายุ (ปี)</label>
+                            <input type="text" value="20" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">สังกัดโรงเรียน/ทีม</label>
+                            <input type="text" value="โรงเรียนRoblox" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ที่อยู่ -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 mb-1">ที่อยู่ปัจจุบัน</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                    </div>
+                </div>
+
+                <!-- 2. เลือกรุ่น -->
+                <div>
+                    <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">2</span>
+                        เลือกรุ่นที่ลงแข่งขัน
+                    </h3>
+                    <input type="text" value="รุ่นทั่วไป Open (ชาย)" readonly class="w-full sm:w-1/2 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                </div>
+
+                <!-- 3. เลือกประเภทกีฬา -->
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">3</span>
+                            เลือกประเภทกีฬาที่ต้องการแข่งขัน
+                        </h3>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-1 rounded-full">เลือกได้ 4/4 รายการ</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border border-gray-200 rounded-xl p-4 bg-gray-50/50">
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทลู่ (Track)</p>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 60 เมตร</label>
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 80 เมตร</label>
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 100 เมตร</label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทข้ามรั้ว (Hurdles)</p>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่งข้ามรั้ว 100 เมตร</label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทลาน (Field)</p>
+                            <div class="space-y-2 text-xs text-gray-400">
+                                <p>- ไม่มีรายการที่เลือก -</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เงื่อนไข -->
+                <div class="bg-purple-50/50 p-4 rounded-xl border border-purple-100 text-xs text-gray-700 flex items-center gap-2">
+                    <input type="checkbox" checked disabled class="custom-checkbox w-4 h-4 rounded text-purple-600">
+                    <span>ข้าพเจ้ายินดีปฏิบัติตามระเบียบการแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49 ทุกประการ</span>
+                </div>
+
+            </div>
+
+            <!-- ส่วนท้าย Modal -->
+            <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-gray-400">ยื่นสมัครเมื่อ: 31/7/2569</span>
+                <button onclick="closeViewModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl text-sm font-medium transition">
+                    ปิด
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup (Modal) ขอให้แก้ไขใบสมัคร -->
+    <!-- ========================================== -->
+    <div id="editModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden p-6 sm:p-8">
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-gray-900 mb-1">ขอให้นักกีฬาแก้ไขใบสมัคร</h2>
+                <p class="text-sm text-gray-500">ระบุสิ่งที่ต้องการให้แก้ไข — นักกีฬาจะเห็นข้อความนี้และสามารถส่งใบสมัครใหม่ได้</p>
+            </div>
+            <div class="mb-6">
+                <textarea rows="4" placeholder="เช่น กรุณาแนบรูปถ่ายที่เห็นหน้าชัดเจนกว่านี้ หรือ กรอกที่อยู่ให้ครบถ้วน" 
+                    class="w-full p-4 border-2 border-amber-400 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-200 transition text-gray-700 resize-none"></textarea>
+            </div>
+            <div class="flex justify-end items-center gap-3">
+                <button onclick="closeEditModal()" class="px-5 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 transition">
+                    ยกเลิก
+                </button>
+                <button onclick="submitEditRequest()" class="bg-[#D97706] hover:bg-[#B45309] text-white px-6 py-2.5 rounded-xl text-sm font-semibold shadow-md transition">
+                    ส่งคำขอแก้ไข
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ส่วนท้าย (Footer) -->
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 ระบบจัดการแข่งขันกรีฑา มหาวิทยาลัยพะเยา</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript ควบคุม Modal -->
+    <script>
+        function openViewModal() {
+            const modal = document.getElementById('viewModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeViewModal() {
+            const modal = document.getElementById('viewModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openEditModal() {
+            const modal = document.getElementById('editModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeEditModal() {
+            const modal = document.getElementById('editModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function submitEditRequest() {
+            alert('ส่งคำขอให้แก้ไขใบสมัครไปยังนักกีฬาเรียบร้อยแล้ว');
+            closeEditModal();
+        }
+    
+        // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
+        function toggleNotification() {
+            const noti = document.getElementById('notiDropdown');
+            if (noti) noti.classList.toggle('hidden');
+        }
+        document.addEventListener('click', function(e) {
+            const noti = document.getElementById('notiDropdown');
+            if (!noti || noti.classList.contains('hidden')) return;
+            if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
+            noti.classList.add('hidden');
+        });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบสมัครของฉัน - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-checkbox:checked {
+            background-color: #7e22ce;
+            border-color: #7e22ce;
+        }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen relative">
+
+    <!-- แถบ Navbar ด้านบน -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="events.html" class="flex items-center gap-2">
+                        <div class="text-2xl">🏃‍♂️</div>
+                        <span class="font-bold text-xl text-purple-900 tracking-wide">Track & Field</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <button onclick="toggleNotification()" class="relative p-2 text-gray-400 hover:text-purple-600 transition rounded-full hover:bg-gray-100 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="absolute top-1.5 right-1.5 flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                                </span>
+                            </button>
+                            <div id="notiDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                                <div class="bg-purple-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                                    <h3 class="font-bold text-purple-900">การแจ้งเตือน</h3>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2 ใหม่</span>
+                                </div>
+                                <div class="max-h-80 overflow-y-auto divide-y divide-gray-50">
+                                    <div class="p-4 bg-red-50/30 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">⏰</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-red-600">ใกล้ถึงเวลารายงานตัว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบตารางแข่งขันของคุณ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">✅</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="profile.html" title="โปรไฟล์ของฉัน" class="shrink-0">
+                            <img src="https://ui-avatars.com/api/?name=User&background=8B00C8&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-purple-500 shadow-sm hover:scale-105 transition">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-6 overflow-x-auto hide-scrollbar py-3 text-sm font-medium whitespace-nowrap items-center">
+                    <a href="events.html" class="text-gray-500 hover:text-purple-600 transition pb-1">รายการแข่งขัน</a>
+                    <a href="my-applications.html" class="text-purple-700 font-bold border-b-2 border-purple-700 pb-1">ใบสมัครของฉัน</a>
+                    <a href="registration-form.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ลงทะเบียน/สถานะ</a>
+                    <a href="request-athlete.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ขอสังกัดโรงเรียน</a>
+                    <a href="profile.html" class="text-gray-500 hover:text-purple-600 transition pb-1">Profile</a>
+                    <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
+                    <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
+                    <a href="approve-applications.html" class="text-orange-600 hover:text-orange-700 transition pb-1">อนุมัติการแข่งขัน</a>
+                    <a href="manage-schools.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการโรงเรียน</a>
+                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
+                    <a href="referee-stats.html" class="text-red-600 hover:text-red-700 transition pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- พื้นที่เนื้อหาหลัก -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
+        
+        <h1 class="text-2xl font-bold text-[#4A148C]">ใบสมัครของฉัน</h1>
+
+        <!-- ======================================================== -->
+        <!-- ตัวอย่างที่ 3: สถานะ "อนุมัติแล้ว" -->
+        <!-- ======================================================== -->
+        <div>
+            <p class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">ตัวอย่าง: ใบสมัครที่ผ่านการอนุมัติแล้ว (มี QR Code)</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-green-200 p-6 sm:p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 bottom-0 w-2 bg-green-500"></div>
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5 pl-2">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">การแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">ยื่นสมัครเมื่อ: 25/7/2569 • ผู้สมัคร: นายภัสพงษ์ สิริชัยวงศ์สกุล</p>
+                    </div>
+                    <span class="bg-green-100 text-green-700 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap border border-green-200">
+                        ✅ อนุมัติแล้ว
+                    </span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 pl-2">
+                    <button onclick="openViewModal()" class="border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-sm">
+                        ดูใบสมัคร
+                    </button>
+                    <!-- ปุ่มเปิด QR Code -->
+                    <button onclick="openQrModal()" class="bg-[#8B00C8] hover:bg-[#7200A3] text-white px-6 py-2.5 rounded-xl text-sm font-semibold shadow-md transition flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                        </svg>
+                        แสดง QR Code รายงานตัว
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ตัวอย่างที่ 1: สถานะ "ต้องแก้ไข" -->
+        <div>
+            <p class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">ตัวอย่าง: หลังจากผู้จัดการทีมกด "ขอให้แก้ไข"</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-amber-200 p-6 sm:p-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 bottom-0 w-2 bg-amber-400"></div>
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5 pl-2">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">การแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">ยื่นสมัครเมื่อ: 31/7/2569 • ผู้สมัคร: นายภัสพงษ์ สิริชัยวงศ์สกุล</p>
+                    </div>
+                    <span class="bg-[#FEF3C7] text-[#D97706] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap">
+                        ต้องแก้ไข
+                    </span>
+                </div>
+
+                <div class="bg-[#FFFBEB] border border-amber-200 rounded-xl p-4 mb-6 text-sm text-amber-900 flex items-start gap-3 ml-2">
+                    <span class="text-amber-600 text-base">⚠️</span>
+                    <div>
+                        <strong class="font-semibold">ผู้จัดการทีมขอให้แก้ไข:</strong> 
+                        <span>กรอกข้อมูลส่วนตัวไม่ครบถ้วน กรุณาตรวจสอบและเพิ่มรายละเอียดให้เรียบร้อยครับ</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3 pl-2">
+                    <button onclick="openViewModal()" class="border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-sm">
+                        ดูใบสมัคร
+                    </button>
+                    <a href="registration-form.html" class="bg-[#D97706] hover:bg-[#B45309] text-white px-6 py-2.5 rounded-xl text-sm font-semibold shadow-md transition flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        แก้ไขและส่งใหม่
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ตัวอย่างที่ 2: สถานะ "รอผู้จัดการทีมอนุมัติ" -->
+        <div>
+            <p class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">ตัวอย่าง: ก่อนส่งคำขอแก้ไข (สถานะปกติหลังกดสมัคร)</p>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">การแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">ยื่นสมัครเมื่อ: 30/7/2569 • ผู้สมัคร: นายภัสพงษ์ สิริชัยวงศ์สกุล</p>
+                    </div>
+                    <span class="bg-[#FEF3C7] text-[#B45309] px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap">
+                        รอผู้จัดการทีมอนุมัติ
+                    </span>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="openViewModal()" class="border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-sm">
+                        ดูใบสมัคร
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup (Modal) QR Code รายงานตัว -->
+    <!-- ========================================== -->
+    <div id="qrModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col transform transition-all">
+            
+            <div class="bg-purple-900 p-5 text-center relative">
+                <h2 class="text-xl font-bold text-white">บัตรรายงานตัว (E-Ticket)</h2>
+                <p class="text-purple-200 text-sm">ยื่นหน้านี้ให้เจ้าหน้าที่ Call Room</p>
+                <button onclick="closeQrModal()" class="absolute top-4 right-4 text-white/70 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-8 flex flex-col items-center bg-gray-50">
+                <!-- รูป QR Code จำลอง -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 mb-6">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=APP-2026-88392" alt="QR Code" class="w-48 h-48">
+                </div>
+                
+                <div class="w-full space-y-4 text-center">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider font-bold">ชื่อนักกีฬา</p>
+                        <p class="text-xl font-bold text-gray-900">นายภัสพงษ์ สิริชัยวงศ์สกุล</p>
+                        <p class="text-sm text-purple-700 font-medium mt-1">โรงเรียนสาธิตมหาวิทยาลัยพะเยา</p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 mt-4 text-center shadow-sm">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">หมายเลขประจำตัว (Bib)</p>
+                        <p class="text-3xl font-black text-[#8B00C8] tracking-widest">10101</p>
+                    </div>
+                    
+                    <p class="text-xs text-gray-400 mt-2">
+                        * ใช้ QR Code นี้สแกนรายงานตัวกับเจ้าหน้าที่ Call Room ได้สำหรับทุกรายการแข่งขันที่ลงสมัคร
+                    </p>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-white border-t border-gray-100 text-center">
+                <button onclick="closeQrModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 rounded-xl transition">
+                    ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup (Modal) ดูใบสมัครของนักกีฬา -->
+    <!-- ========================================== -->
+    <div id="viewModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+            
+            <!-- หัวข้อ Modal -->
+            <div class="p-6 sm:p-8 border-b border-gray-100 flex justify-between items-start bg-gray-50">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">ใบสมัครเข้าร่วมการแข่งขัน</h2>
+                    <p class="text-sm text-gray-500">การแข่งขัน (-)</p>
+                </div>
+                <!-- รูปตัวการ์ตูน / รูปถ่ายนักกีฬา -->
+                <div class="w-20 h-24 bg-purple-50 border border-purple-200 rounded-lg flex items-center justify-center shrink-0 overflow-hidden shadow-sm">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Patsapong" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- เนื้อหาภายใน Modal -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-8">
+                
+                <!-- 1. ข้อมูลส่วนตัว -->
+                <div>
+                    <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">1</span>
+                        ข้อมูลส่วนตัว
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">คำนำหน้า</label>
+                            <input type="text" value="นาย" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">ชื่อ - นามสกุล</label>
+                            <input type="text" value="ภัสพงษ์ สิริชัยวงศ์สกุล" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">อายุ (ปี)</label>
+                            <input type="text" value="20" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 mb-1">สังกัดโรงเรียน/ทีม</label>
+                            <input type="text" value="โรงเรียนสาธิตมหาวิทยาลัยพะเยา" readonly class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ที่อยู่ -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 mb-1">ที่อยู่ปัจจุบัน</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                        <input type="text" value="-" readonly class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                    </div>
+                </div>
+
+                <!-- 2. เลือกรุ่น -->
+                <div>
+                    <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">2</span>
+                        เลือกรุ่นที่ลงแข่งขัน
+                    </h3>
+                    <input type="text" value="รุ่นทั่วไป Open (ชาย)" readonly class="w-full sm:w-1/2 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+                </div>
+
+                <!-- 3. เลือกประเภทกีฬา -->
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-bold text-purple-800 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs">3</span>
+                            เลือกประเภทกีฬาที่ต้องการแข่งขัน
+                        </h3>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-1 rounded-full">เลือกได้ 4/4 รายการ</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border border-gray-200 rounded-xl p-4 bg-gray-50/50">
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทลู่ (Track)</p>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 60 เมตร</label>
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 80 เมตร</label>
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่ง 100 เมตร</label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทข้ามรั้ว (Hurdles)</p>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center gap-2"><input type="checkbox" checked disabled class="custom-checkbox w-3.5 h-3.5 rounded text-purple-600"> วิ่งข้ามรั้ว 100 เมตร</label>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold text-xs text-gray-700 mb-2 border-b pb-1">ประเภทลาน (Field)</p>
+                            <div class="space-y-2 text-xs text-gray-400">
+                                <p>- ไม่มีรายการที่เลือก -</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- เงื่อนไข -->
+                <div class="bg-purple-50/50 p-4 rounded-xl border border-purple-100 text-xs text-gray-700 flex items-center gap-2">
+                    <input type="checkbox" checked disabled class="custom-checkbox w-4 h-4 rounded text-purple-600">
+                    <span>ข้าพเจ้ายินดีปฏิบัติตามระเบียบการแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49 ทุกประการ</span>
+                </div>
+
+            </div>
+
+            <!-- ส่วนท้าย Modal -->
+            <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-xs text-gray-400">ยื่นสมัครเมื่อ: 31/7/2569</span>
+                <button onclick="closeViewModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl text-sm font-medium transition">
+                    ปิด
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ส่วนท้าย (Footer) -->
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 ระบบจัดการแข่งขันกรีฑา มหาวิทยาลัยพะเยา</p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- แถบแจ้งเตือนเวลารายงานตัว (Toast Notification) -->
+    <!-- ========================================== -->
+    <div id="checkinAlertToast" class="fixed bottom-5 right-5 z-50 transform transition-all duration-500 translate-y-20 opacity-0 pointer-events-none flex flex-col gap-3">
+        <!-- กล่องจะถูกสร้างด้วย JavaScript -->
+    </div>
+
+    <!-- JavaScript ควบคุม Modal และการแจ้งเตือน -->
+    <script>
+        function openViewModal() {
+            const modal = document.getElementById('viewModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeViewModal() {
+            const modal = document.getElementById('viewModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openQrModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeQrModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
+        function toggleNotification() {
+            const noti = document.getElementById('notiDropdown');
+            noti.classList.toggle('hidden');
+        }
+
+        // สมมติว่ามีรายการใกล้ถึงเวลารายงานตัว
+        const upcomingCheckins = [
+            {
+                eventName: "วิ่ง 60 เมตร (ชาย)",
+                checkinTime: "07:30 น.",
+                bib: "10101",
+                timeRemaining: 15
+            }
+        ];
+
+        // ฟังก์ชันแสดง Toast แจ้งเตือน
+        function showCheckinAlert() {
+            const toastContainer = document.getElementById('checkinAlertToast');
+            
+            upcomingCheckins.forEach((event, index) => {
+                const toastHtml = `
+                    <div id="toast-${index}" class="bg-white border-l-4 border-red-500 rounded-xl shadow-2xl p-4 sm:p-5 w-full max-w-sm flex items-start gap-4 pointer-events-auto">
+                        <div class="bg-red-100 text-red-600 rounded-full w-10 h-10 flex items-center justify-center shrink-0 text-xl animate-bounce">
+                            ⏰
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-red-600 font-bold text-sm">ใกล้ถึงเวลารายงานตัว!</h4>
+                            <p class="text-gray-900 font-bold text-base mt-0.5">${event.eventName}</p>
+                            <p class="text-sm text-gray-600 mt-1">เวลา: <strong class="text-gray-900">${event.checkinTime}</strong></p>
+                            <p class="text-xs text-red-500 font-semibold mt-1">⏳ เหลือเวลาอีก ${event.timeRemaining} นาที</p>
+                            
+                            <button onclick="openQrModal(); document.getElementById('toast-${index}').remove();" class="mt-3 w-full bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 py-2 rounded-lg text-sm font-bold transition">
+                                📱 เปิด QR Code รายงานตัว
+                            </button>
+                        </div>
+                        <button onclick="document.getElementById('toast-${index}').remove()" class="text-gray-400 hover:text-gray-600 transition p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+            });
+
+            // แอนิเมชันเด้งขึ้น
+            setTimeout(() => {
+                toastContainer.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 1000); // ดีเลย์ 1 วินาทีหลังจากโหลดหน้าเสร็จ
+        }
+
+        // โหลดฟังก์ชันเมื่อหน้าเว็บพร้อม
+        window.addEventListener('DOMContentLoaded', () => {
+            showCheckinAlert();
+        });
+    </script>
+</body>
+</html>

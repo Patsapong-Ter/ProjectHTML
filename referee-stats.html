@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กรอกสถิติการแข่งขัน - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen">
+
+    <!-- แถบ Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="events.html" class="flex items-center gap-2">
+                        <div class="text-2xl">🏃‍♂️</div>
+                        <span class="font-bold text-xl text-purple-900 tracking-wide">Track & Field</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <button onclick="toggleNotification()" class="relative p-2 text-gray-400 hover:text-purple-600 transition rounded-full hover:bg-gray-100 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="absolute top-1.5 right-1.5 flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                                </span>
+                            </button>
+                            <div id="notiDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                                <div class="bg-purple-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                                    <h3 class="font-bold text-purple-900">การแจ้งเตือน</h3>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2 ใหม่</span>
+                                </div>
+                                <div class="max-h-80 overflow-y-auto divide-y divide-gray-50">
+                                    <div class="p-4 bg-red-50/30 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">⏰</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-red-600">ใกล้ถึงเวลารายงานตัว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบตารางแข่งขันของคุณ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">✅</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="profile.html" title="โปรไฟล์">
+                            <img src="https://ui-avatars.com/api/?name=User&background=F59E0B&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-yellow-400 shadow-sm hover:scale-105 transition">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-6 overflow-x-auto hide-scrollbar py-3 text-sm font-medium whitespace-nowrap items-center">
+                    <a href="events.html" class="text-gray-500 hover:text-purple-600 transition pb-1">รายการแข่งขัน</a>
+                    <a href="my-applications.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ใบสมัครของฉัน</a>
+                    <a href="registration-form.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ลงทะเบียน/สถานะ</a>
+                    <a href="request-athlete.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ขอสังกัดโรงเรียน</a>
+                    <a href="profile.html" class="text-gray-500 hover:text-purple-600 transition pb-1">Profile</a>
+                    <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
+                    <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
+                    <a href="approve-applications.html" class="text-orange-600 hover:text-orange-700 transition pb-1">อนุมัติการแข่งขัน</a>
+                    <a href="manage-schools.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการโรงเรียน</a>
+                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
+                    <a href="referee-stats.html" class="text-red-700 font-bold border-b-2 border-red-700 pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- เนื้อหาหลัก -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-red-700 mb-2">⏱️ ระบบกรอกสถิติการแข่งขัน (สำหรับผู้ตัดสิน)</h1>
+            <p class="text-gray-500 text-sm">เลือกรายการแข่งขันด้านล่างเพื่อบันทึกสถิติและผลการแข่งขันของนักกีฬา</p>
+        </div>
+
+        <!-- คอนเทนเนอร์ 1: ตารางแสดงรายการแข่งขันทั้งหมด -->
+        <div id="eventListContainer" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse border border-gray-200">
+                    <thead>
+                        <tr class="bg-purple-900 text-white text-xs uppercase tracking-wide">
+                            <th class="p-4 border border-purple-800 text-center w-20">รายการ</th>
+                            <th class="p-4 border border-purple-800 text-center w-28">เวลาเริ่ม</th>
+                            <th class="p-4 border border-purple-800">ประเภทแข่งขัน</th>
+                            <th class="p-4 border border-purple-800">รุ่น</th>
+                            <th class="p-4 border border-purple-800 w-20 text-center">เพศ</th>
+                            <th class="p-4 border border-purple-800">รอบ</th>
+                            <th class="p-4 border border-purple-800 text-center w-28">จำนวนนักกีฬา</th>
+                            <th class="p-4 border border-purple-800 text-center w-32">สถานะ</th>
+                            <th class="p-4 border border-purple-800 text-center w-36">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-gray-200" id="eventsTableBody">
+                        <!-- ข้อมูลจะถูกสร้างด้วย JavaScript ด้านล่าง -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- คอนเทนเนอร์ 2: ฟอร์มสำหรับกรอกสถิติ (ซ่อนไว้เป็นค่าเริ่มต้น) -->
+        <div id="statsFormContainer" class="hidden bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-red-200">
+            <!-- Header ของฟอร์มกรอกสถิติ -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-red-50 p-5 rounded-xl border border-red-100 mb-6 gap-4">
+                <div>
+                    <button onclick="backToList()" class="text-sm text-red-600 hover:text-red-800 font-semibold mb-2 flex items-center gap-1 transition">
+                        ← ย้อนกลับไปตารางรายการ
+                    </button>
+                    <div id="statsEventTitle" class="text-xl font-bold text-red-900">
+                        <!-- ชื่อรายการจะมาแสดงที่นี่ -->
+                    </div>
+                </div>
+                <div id="statsEventDetails" class="text-sm text-gray-700 bg-white px-4 py-2 rounded-lg shadow-sm border border-red-50 text-right">
+                    <!-- รายละเอียดจะมาแสดงที่นี่ -->
+                </div>
+            </div>
+            
+            <!-- ตารางกรอกสถิติ -->
+            <div id="statsTableContent">
+                <!-- ข้อมูลตาราง Heat จะมาแสดงที่นี่ -->
+            </div>
+
+            <!-- ปุ่มบันทึก -->
+            <div class="flex justify-end gap-4 mt-8 border-t border-gray-100 pt-6">
+                <button onclick="backToList()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2.5 rounded-xl font-medium transition">
+                    ยกเลิก
+                </button>
+                <button onclick="saveStats()" class="bg-red-600 hover:bg-red-700 text-white px-8 py-2.5 rounded-xl font-semibold shadow-sm transition">
+                    💾 บันทึกสถิติ
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 ระบบจัดการแข่งขันกรีฑา มหาวิทยาลัยพะเยา</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript ควบคุมระบบ -->
+    <script>
+        // ข้อมูลจำลองรายการแข่งขัน พร้อมสถานะ (completed = กรอกแล้ว, inprogress = กำลังกรอก, pending = ยังไม่กรอก)
+        const eventsList = [
+            { id: 101, time: "08.00 น.", name: "วิ่ง 60 เมตร", cat: "ประถมต้น", gender: "ชาย", round: "คัดเลือก", athletes: 8, status: "completed" },
+            { id: 102, time: "08.20 น.", name: "วิ่ง 80 เมตร", cat: "ประถมต้น", gender: "หญิง", round: "คัดเลือก", athletes: 8, status: "inprogress" },
+            { id: 103, time: "08.40 น.", name: "วิ่ง 100 เมตร", cat: "ประถมปลาย", gender: "ชาย", round: "คัดเลือก", athletes: 8, status: "pending" },
+            { id: 104, time: "09.00 น.", name: "วิ่ง 200 เมตร", cat: "ประถมปลาย", gender: "หญิง", round: "คัดเลือก", athletes: 8, status: "pending" },
+            { id: 105, time: "09.20 น.", name: "วิ่ง 400 เมตร", cat: "มัธยมต้น", gender: "ชาย", round: "ชิงชนะเลิศ", athletes: 8, status: "pending" },
+            { id: 106, time: "09.40 น.", name: "วิ่ง 800 เมตร", cat: "มัธยมต้น", gender: "หญิง", round: "ชิงชนะเลิศ", athletes: 8, status: "pending" }
+        ];
+
+        // ฟังก์ชันกำหนดสี Badge สถานะ
+        function getStatusBadge(status) {
+            if (status === 'completed') {
+                return '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200">✅ กรอกแล้ว</span>';
+            } else if (status === 'inprogress') {
+                return '<span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold border border-amber-200">⏳ กำลังกรอก</span>';
+            } else {
+                return '<span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-200">ยังไม่กรอก</span>';
+            }
+        }
+
+        // Render ตารางรายการแข่งขันตอนโหลดหน้าเว็บ
+        function renderEventsTable() {
+            const tbody = document.getElementById('eventsTableBody');
+            let html = '';
+            
+            eventsList.forEach(ev => {
+                const roundClass = ev.round === 'ชิงชนะเลิศ' ? 'text-amber-700 font-bold' : 'text-gray-700';
+                
+                html += `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 border border-gray-100 text-center font-bold text-purple-800">${ev.id}</td>
+                        <td class="p-4 border border-gray-100 text-center">${ev.time}</td>
+                        <td class="p-4 border border-gray-100">${ev.name}</td>
+                        <td class="p-4 border border-gray-100">${ev.cat}</td>
+                        <td class="p-4 border border-gray-100 text-center">${ev.gender}</td>
+                        <td class="p-4 border border-gray-100 ${roundClass}">${ev.round}</td>
+                        <td class="p-4 border border-gray-100 text-center">${ev.athletes}</td>
+                        <td class="p-4 border border-gray-100 text-center whitespace-nowrap">
+                            ${getStatusBadge(ev.status)}
+                        </td>
+                        <td class="p-4 border border-gray-100 text-center">
+                            <button onclick="openStatsForm(${ev.id})" class="bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white border border-blue-200 hover:border-transparent px-3 py-1.5 rounded-lg text-xs font-semibold transition whitespace-nowrap shadow-sm">
+                                📝 เพิ่ม/แก้ไข
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // เปิดฟอร์มกรอกสถิติ
+        function openStatsForm(eventId) {
+            const ev = eventsList.find(e => e.id === eventId);
+            if (!ev) return;
+
+            // สลับหน้าจอซ่อนตารางแรก เปิดตารางฟอร์ม
+            document.getElementById('eventListContainer').classList.add('hidden');
+            document.getElementById('statsFormContainer').classList.remove('hidden');
+            window.scrollTo(0, 0); // เลื่อนจอขึ้นบนสุด
+
+            // ตั้งค่า Header
+            document.getElementById('statsEventTitle').innerHTML = `<span class="text-sm font-bold text-red-600 uppercase block mb-1">รายการที่ ${ev.id}</span> ${ev.name}`;
+            document.getElementById('statsEventDetails').innerHTML = `รุ่น: <strong>${ev.cat}</strong> | เพศ: <strong>${ev.gender}</strong><br>รอบ: <strong>${ev.round}</strong> | เวลา: <strong>${ev.time}</strong>`;
+
+            // ข้อมูลนักกีฬาจำลอง (สร้างตามรูปที่ 2)
+            const athletes = [
+                { lane: 2, num: "01", fname: "ด.ช.ภัสพงษ์", lname: "สิริชัยวงศ์สกุล", school: "สาธิตพะเยา", stat: "", remark: "" },
+                { lane: 3, num: "02", fname: "ด.ช.สมชาย", lname: "ใจดี", school: "สาธิตเกษตร", stat: "", remark: "" },
+                { lane: 4, num: "03", fname: "ด.ช.มานพ", lname: "รักเรียน", school: "สาธิตจุฬา", stat: "", remark: "" },
+                { lane: 5, num: "04", fname: "ด.ช.กิตติ", lname: "มั่นคง", school: "สาธิตมศว", stat: "", remark: "" }
+            ];
+
+            let tableHtml = `
+                <div class="mb-6">
+                    <div class="bg-purple-900 text-white px-4 py-3 rounded-t-xl font-bold text-sm">
+                        พวกที่ 1 (Heat 1)
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200">
+                            <thead>
+                                <tr class="bg-gray-100 text-xs font-semibold text-gray-700 text-center">
+                                    <th class="p-3 border border-gray-200 w-20">ช่องวิ่ง</th>
+                                    <th class="p-3 border border-gray-200 w-28">หมายเลข</th>
+                                    <th class="p-3 border border-gray-200 text-left">ชื่อ - สกุล</th>
+                                    <th class="p-3 border border-gray-200 text-left">สังกัด</th>
+                                    <th class="p-3 border border-gray-200 w-40">สถิติ</th>
+                                    <th class="p-3 border border-gray-200 w-48">หมายเหตุ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-gray-200">
+            `;
+
+            athletes.forEach(a => {
+                tableHtml += `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-3 border border-gray-200 text-center font-bold text-gray-800">${a.lane}</td>
+                        <td class="p-3 border border-gray-200 text-center text-gray-600">${ev.id}${a.num}</td>
+                        <td class="p-3 border border-gray-200 font-medium">${a.fname} ${a.lname}</td>
+                        <td class="p-3 border border-gray-200 text-gray-600">${a.school}</td>
+                        <td class="p-3 border border-gray-200 text-center bg-white">
+                            <input type="text" placeholder="-" value="${a.stat}" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-center text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition shadow-inner text-gray-700 font-semibold">
+                        </td>
+                        <td class="p-3 border border-gray-200 text-center bg-white">
+                            <input type="text" placeholder="-" value="${a.remark}" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition shadow-inner">
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('statsTableContent').innerHTML = tableHtml;
+        }
+
+        // กลับไปหน้าตาราง
+        function backToList() {
+            document.getElementById('statsFormContainer').classList.add('hidden');
+            document.getElementById('eventListContainer').classList.remove('hidden');
+        }
+
+        // บันทึกสถิติ
+        function saveStats() {
+            alert('บันทึกสถิติลงระบบเรียบร้อยแล้ว ✅');
+            backToList();
+            // ปล. ในระบบจริงตรงนี้ควรเปลี่ยนสถานะ Array eventsList เป็น completed แล้วเรียก renderEventsTable() ใหม่
+        }
+
+        // สั่งทำงานเมื่อโหลดหน้า
+        window.onload = renderEventsTable;
+    
+        // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
+        function toggleNotification() {
+            const noti = document.getElementById('notiDropdown');
+            if (noti) noti.classList.toggle('hidden');
+        }
+        document.addEventListener('click', function(e) {
+            const noti = document.getElementById('notiDropdown');
+            if (!noti || noti.classList.contains('hidden')) return;
+            if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
+            noti.classList.add('hidden');
+        });
+</script>
+</body>
+</html>

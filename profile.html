@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ส่วนตัว - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen">
+
+    <!-- แถบ Navbar ด้านบน -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="events.html" class="flex items-center gap-2">
+                        <div class="text-2xl">🏃‍♂️</div>
+                        <span class="font-bold text-xl text-purple-900 tracking-wide">Track & Field</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <button onclick="toggleNotification()" class="relative p-2 text-gray-400 hover:text-purple-600 transition rounded-full hover:bg-gray-100 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="absolute top-1.5 right-1.5 flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                                </span>
+                            </button>
+                            <div id="notiDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                                <div class="bg-purple-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                                    <h3 class="font-bold text-purple-900">การแจ้งเตือน</h3>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2 ใหม่</span>
+                                </div>
+                                <div class="max-h-80 overflow-y-auto divide-y divide-gray-50">
+                                    <div class="p-4 bg-red-50/30 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">⏰</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-red-600">ใกล้ถึงเวลารายงานตัว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบตารางแข่งขันของคุณ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">✅</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="profile.html" title="โปรไฟล์ของฉัน">
+                            <img src="https://ui-avatars.com/api/?name=Patsapong+S&background=8B00C8&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-purple-500 shadow-sm transition">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-6 overflow-x-auto hide-scrollbar py-3 text-sm font-medium whitespace-nowrap items-center">
+                    <a href="events.html" class="text-gray-500 hover:text-purple-600 transition pb-1">รายการแข่งขัน</a>
+                    <a href="my-applications.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ใบสมัครของฉัน</a>
+                    <a href="registration-form.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ลงทะเบียน/สถานะ</a>
+                    <a href="request-athlete.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ขอสังกัดโรงเรียน</a>
+                    <a href="profile.html" class="text-purple-700 font-bold border-b-2 border-purple-700 pb-1">Profile</a>
+                    <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
+                    <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
+                    <a href="approve-applications.html" class="text-orange-600 hover:text-orange-700 transition pb-1">อนุมัติการแข่งขัน</a>
+                    <a href="manage-schools.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการโรงเรียน</a>
+                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
+                    <a href="referee-stats.html" class="text-red-600 hover:text-red-700 transition pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- พื้นที่เนื้อหาหลัก -->
+    <main class="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-[#4A148C] mb-1">จัดการโปรไฟล์</h1>
+            <p class="text-gray-500 text-sm">แก้ไขข้อมูลส่วนตัวและการตั้งค่าความปลอดภัย</p>
+        </div>
+
+        <form action="#" method="POST">
+            <!-- ส่วนที่ 1: ข้อมูลส่วนตัว -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-6">
+                <div class="bg-[#F8F5FF] px-8 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <h2 class="text-lg font-bold text-[#4A148C]">ข้อมูลส่วนตัว</h2>
+                </div>
+                
+                <div class="p-8">
+                    <!-- รูปโปรไฟล์แบบแก้ไขได้ -->
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="relative">
+                            <img src="https://ui-avatars.com/api/?name=Patsapong+S&background=8B00C8&color=fff&size=128" alt="Profile" class="w-24 h-24 rounded-full border-4 border-gray-50 shadow-sm">
+                            <button type="button" class="absolute bottom-0 right-0 bg-white border border-gray-200 text-gray-600 p-1.5 rounded-full shadow-sm hover:text-purple-600 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg">ภัสพงษ์ สิริชัยวงศ์สกุล</p>
+                            <p class="text-gray-500 text-sm mb-2">มหาวิทยาลัยพะเยา</p>
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">บัญชี</span>
+                        </div>
+                    </div>
+
+                    <!-- ฟอร์มกรอกข้อมูล -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- อีเมล (ไม่อนุญาตให้แก้ เพราะใช้เป็น Login ID) -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">อีเมล (ไม่สามารถแก้ไขได้)</label>
+                            <input type="email" value="patsapong.ter2@gmail.com" disabled class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-100 text-gray-500 cursor-not-allowed">
+                        </div>
+
+                        <!-- ชื่อจริง -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">ชื่อ - นามสกุล</label>
+                            <input type="text" value="ภัสพงษ์ สิริชัยวงศ์สกุล" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        </div>
+
+                        <!-- วันเกิด -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">วัน/เดือน/ปีเกิด</label>
+                            <!-- ใส่ค่า value ตัวอย่างไปให้ -->
+                            <input type="date" value="2003-05-15" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-gray-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2: ตั้งค่ารหัสผ่าน -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                <div class="bg-[#F8F5FF] px-8 py-4 border-b border-gray-100 flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <h2 class="text-lg font-bold text-[#4A148C]">เปลี่ยนรหัสผ่าน</h2>
+                </div>
+                
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">รหัสผ่านปัจจุบัน</label>
+                            <input type="password" placeholder="********" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">รหัสผ่านใหม่</label>
+                            <input type="password" placeholder="รหัสผ่านใหม่อย่างน้อย 8 ตัวอักษร" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">ยืนยันรหัสผ่านใหม่</label>
+                            <input type="password" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ปุ่มบันทึกข้อมูล -->
+            <div class="flex justify-end gap-4">
+                <button type="button" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium transition text-sm">
+                    ยกเลิก
+                </button>
+                <button type="button" class="bg-[#8B00C8] hover:bg-[#7200A3] text-white px-8 py-3 rounded-xl font-medium shadow-md transition text-sm flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    </svg>
+                    บันทึกการเปลี่ยนแปลง
+                </button>
+            </div>
+
+        </form>
+    </main>
+
+    <!-- ส่วนท้าย (Footer) -->
+    <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2026 ระบบจัดการแข่งขันกรีฑา มหาวิทยาลัยพะเยา</p>
+        </div>
+    </footer>
+
+<script>
+        // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
+        function toggleNotification() {
+            const noti = document.getElementById('notiDropdown');
+            if (noti) noti.classList.toggle('hidden');
+        }
+        document.addEventListener('click', function(e) {
+            const noti = document.getElementById('notiDropdown');
+            if (!noti || noti.classList.contains('hidden')) return;
+            if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
+            noti.classList.add('hidden');
+        });
+</script>
+</body>
+</html>

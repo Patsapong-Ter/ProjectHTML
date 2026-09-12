@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการโรงเรียน - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen relative">
+
+    <!-- แถบ Navbar ด้านบน -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <a href="events.html" class="flex items-center gap-2">
+                        <div class="text-2xl">🏃‍♂️</div>
+                        <span class="font-bold text-xl text-purple-900 tracking-wide">Track & Field</span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <button onclick="toggleNotification()" class="relative p-2 text-gray-400 hover:text-purple-600 transition rounded-full hover:bg-gray-100 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="absolute top-1.5 right-1.5 flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                                </span>
+                            </button>
+                            <div id="notiDropdown" class="hidden absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+                                <div class="bg-purple-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                                    <h3 class="font-bold text-purple-900">การแจ้งเตือน</h3>
+                                    <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2 ใหม่</span>
+                                </div>
+                                <div class="max-h-80 overflow-y-auto divide-y divide-gray-50">
+                                    <div class="p-4 bg-red-50/30 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">⏰</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-red-600">ใกล้ถึงเวลารายงานตัว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบตารางแข่งขันของคุณ</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
+                                        <div class="flex gap-3">
+                                            <div class="text-2xl mt-1">✅</div>
+                                            <div class="flex-grow">
+                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
+                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="profile.html" title="โปรไฟล์ของฉัน">
+                            <img src="https://ui-avatars.com/api/?name=User&background=F59E0B&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-yellow-400 shadow-sm hover:scale-105 transition">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-6 overflow-x-auto hide-scrollbar py-3 text-sm font-medium whitespace-nowrap items-center">
+                    <a href="events.html" class="text-gray-500 hover:text-purple-600 transition pb-1">รายการแข่งขัน</a>
+                    <a href="my-applications.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ใบสมัครของฉัน</a>
+                    <a href="registration-form.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ลงทะเบียน/สถานะ</a>
+                    <a href="request-athlete.html" class="text-gray-500 hover:text-purple-600 transition pb-1">ขอสังกัดโรงเรียน</a>
+                    <a href="profile.html" class="text-gray-500 hover:text-purple-600 transition pb-1">Profile</a>
+                    <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
+                    <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
+                    <a href="approve-applications.html" class="text-orange-600 hover:text-orange-700 transition pb-1">อนุมัติการแข่งขัน</a>
+                    <a href="manage-schools.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">จัดการโรงเรียน</a>
+                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
+                    <a href="referee-stats.html" class="text-red-600 hover:text-red-700 transition pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <h1 class="text-2xl font-bold text-[#4A148C]">จัดการข้อมูลโรงเรียน</h1>
+            <button class="bg-[#8B00C8] hover:bg-[#7200A3] text-white px-5 py-2.5 rounded-lg text-sm font-medium shadow-sm transition flex items-center gap-2">
+                <span>+</span> เพิ่มโรงเรียนใหม่
+            </button>
+        </div>
+        
+        <!-- ตารางข้อมูลโรงเรียน -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-[#F8F5FF] border-b border-gray-100">
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-700 w-20">ลำดับ</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-700">ชื่อโรงเรียน</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-700 w-40 text-center">จำนวนผู้จัดการทีม</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-700 w-64 text-center">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 text-sm text-gray-500">1</td>
+                            <td class="px-6 py-4 text-sm text-gray-800 font-medium">โรงเรียนสาธิตมหาวิทยาลัยพะเยา</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold border border-blue-100">
+                                    👥 3 คน
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex justify-center gap-2">
+                                    <!-- ใส่ onclick เรียกใช้ฟังก์ชันเปิด Popup -->
+                                    <button onclick="openModal()" class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-1.5 rounded text-xs font-medium transition">
+                                        จัดการผู้ดูแล
+                                    </button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded text-xs font-medium transition">
+                                        แก้ไขชื่อ
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 text-sm text-gray-500">2</td>
+                            <td class="px-6 py-4 text-sm text-gray-800 font-medium">โรงเรียนสาธิตมหาวิทยาลัยเชียงใหม่</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-semibold">
+                                    👥 1 คน
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex justify-center gap-2">
+                                    <!-- ใส่ onclick เรียกใช้ฟังก์ชันเปิด Popup -->
+                                    <button onclick="openModal()" class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-1.5 rounded text-xs font-medium transition">จัดการผู้ดูแล</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded text-xs font-medium transition">แก้ไขชื่อ</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 text-sm text-gray-500">3</td>
+                            <td class="px-6 py-4 text-sm text-gray-800 font-medium">โรงเรียนสาธิตมหาวิทยาลัยขอนแก่น</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold border border-red-100">
+                                    ⚠️ ยังไม่มี
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <div class="flex justify-center gap-2">
+                                    <button class="bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-1.5 rounded text-xs font-medium transition">จัดการผู้ดูแล</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1.5 rounded text-xs font-medium transition">แก้ไขชื่อ</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-between items-center">
+                <span class="text-sm text-gray-600">แสดงผล 1 ถึง 3 จากทั้งหมด 22 รายการ</span>
+                <div class="space-x-1 flex">
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-400 bg-gray-100 cursor-not-allowed">ก่อนหน้า</button>
+                    <button class="px-3 py-1 border border-purple-500 rounded-md text-sm text-white bg-purple-600">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-600 bg-white hover:bg-gray-100">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-600 bg-white hover:bg-gray-100">ถัดไป</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup (Modal) สำหรับจัดการผู้จัดการทีม -->
+    <!-- เปลี่ยนจาก flex เป็น hidden ไว้เป็นค่าเริ่มต้น -->
+    <!-- ========================================== -->
+    <div id="manageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
+        
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 overflow-hidden">
+            
+            <!-- ส่วนหัว Modal -->
+            <div class="bg-[#F8F5FF] px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                <div>
+                    <h2 class="text-lg font-bold text-[#4A148C]">จัดการผู้จัดการทีม</h2>
+                    <p class="text-sm text-gray-500">โรงเรียนสาธิตมหาวิทยาลัยพะเยา</p>
+                </div>
+                <!-- ปุ่มกากบาทปิด (เพิ่ม onclick) -->
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <!-- ฟอร์มเพิ่มคนใหม่ -->
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">เพิ่มบัญชีผู้จัดการใหม่</label>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="กรอกอีเมลผู้ใช้งานระบบ..." class="flex-grow px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button class="bg-[#8B00C8] hover:bg-[#7200A3] text-white px-4 py-2 rounded-lg text-sm font-medium transition whitespace-nowrap">
+                            + เพิ่ม
+                        </button>
+                    </div>
+                </div>
+
+                <!-- รายชื่อคนปัจจุบัน -->
+                <div>
+                    <p class="text-sm font-semibold text-gray-700 mb-3 border-b border-gray-100 pb-2">ผู้จัดการทีมปัจจุบัน (3 คน)</p>
+                    <ul class="space-y-3">
+                        <li class="flex justify-between items-center bg-gray-50 px-4 py-3 rounded-lg border border-gray-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">P</div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">patsapong.ter2@gmail.com</p>
+                                    <p class="text-xs text-gray-500">เพิ่มเมื่อ 10 ก.ค. 2569</p>
+                                </div>
+                            </div>
+                            <button class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition text-sm">
+                                ถอดถอน
+                            </button>
+                        </li>
+                        
+                        <li class="flex justify-between items-center bg-gray-50 px-4 py-3 rounded-lg border border-gray-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">T</div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-800">teacher.sport@up.ac.th</p>
+                                    <p class="text-xs text-gray-500">เพิ่มเมื่อ 12 ก.ค. 2569</p>
+                                </div>
+                            </div>
+                            <button class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition text-sm">
+                                ถอดถอน
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ส่วนท้าย Modal -->
+            <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 text-right">
+                <!-- ปุ่มเสร็จสิ้น (เพิ่ม onclick) -->
+                <button onclick="closeModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-5 py-2 rounded-lg text-sm font-medium transition">
+                    เสร็จสิ้น
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- สคริปต์เปิดปิดหน้าต่าง Popup -->
+    <script>
+        function openModal() {
+            const modal = document.getElementById('manageModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('manageModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    
+        // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
+        function toggleNotification() {
+            const noti = document.getElementById('notiDropdown');
+            if (noti) noti.classList.toggle('hidden');
+        }
+        document.addEventListener('click', function(e) {
+            const noti = document.getElementById('notiDropdown');
+            if (!noti || noti.classList.contains('hidden')) return;
+            if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
+            noti.classList.add('hidden');
+        });
+</script>
+
+</body>
+</html>
