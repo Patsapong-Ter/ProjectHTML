@@ -16,6 +16,7 @@
 
     <!-- แถบ Navbar ด้านบน -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
+        
         <div class="border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
@@ -127,10 +128,10 @@
                 </div>
             </div>
 
-            <!-- แท็บสลับหน้าจอ 3 ปุ่ม -->
+            <!-- แท็บสลับหน้าจอ 4 ปุ่ม -->
             <div class="border-t border-gray-100 bg-white px-8">
                 <div class="flex gap-8 text-sm font-medium overflow-x-auto hide-scrollbar">
-                    <button onclick="switchTab('schedule')" id="btnSchedule" class="py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap">
+                    <button onclick="switchTab('schedule')" id="btnSchedule" class="py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold">
                         1. ตารางการแข่งขัน (สลับแถวได้)
                     </button>
                     <button onclick="switchTab('heats')" id="btnHeats" class="py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap">
@@ -138,6 +139,9 @@
                     </button>
                     <button onclick="switchTab('awards')" id="btnAwards" class="py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap">
                         3. รายชื่อรับรางวัล (เฉพาะรอบชิง) 🏆
+                    </button>
+                    <button onclick="switchTab('summary')" id="btnSummary" class="py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap">
+                        4. สรุปผล 📊
                     </button>
                 </div>
             </div>
@@ -170,7 +174,7 @@
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">101</td><td class="p-3 border text-center">08.00 น.</td><td class="p-3 border">วิ่ง 60 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">102</td><td class="p-3 border text-center">08.20 น.</td><td class="p-3 border">วิ่ง 80 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">103</td><td class="p-3 border text-center">08.40 น.</td><td class="p-3 border">วิ่ง 100 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">104</td><td class="p-3 border text-center">09.00 น.</td><td class="p-3 border">วิ่ง 200 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">104</td><td class="p-3 border text-center">09.00 น.</td><td class="p-3 border">วิ่ง 200 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">105</td><td class="p-3 border text-center">09.20 น.</td><td class="p-3 border">วิ่ง 400 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">106</td><td class="p-3 border text-center">09.40 น.</td><td class="p-3 border">วิ่ง 800 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
                         <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">107</td><td class="p-3 border text-center">10.00 น.</td><td class="p-3 border">วิ่งข้ามรั้ว 100 เมตร</td><td class="p-3 border">มัธยมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
@@ -260,7 +264,7 @@
                                             ${[1, 2, 3, 4].map((lane) => {
                                                 let stat = dummyStats[Math.floor(Math.random() * dummyStats.length)];
                                                 let remark = dummyRemarks[Math.floor(Math.random() * dummyRemarks.length)];
-                                                if (remark === "ฟาวล์" || remark === "DNS") stat = "-"; // ลอจิกเล็กๆให้ดูสมจริง
+                                                if (remark === "ฟาวล์" || remark === "DNS") stat = "-"; 
                                                 return `
                                                 <tr class="hover:bg-gray-50 transition">
                                                     <td class="p-2.5 border border-gray-200 text-center font-bold">${lane + 1}</td>
@@ -386,6 +390,105 @@
             </script>
         </div>
 
+        <!-- ========================================== -->
+        <!-- ส่วนที่ 4: สรุปผล (Dashboard) -->
+        <!-- ========================================== -->
+        <div id="contentSummary" class="hidden space-y-8">
+            <h2 class="text-xl font-bold text-purple-900 border-l-4 border-purple-600 pl-3">แดชบอร์ดสรุปผลการแข่งขัน</h2>
+            
+            <!-- Cards สรุปตัวเลข -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- สรุปโรงเรียนที่เข้าร่วม -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl shadow-sm">
+                        🏫
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">โรงเรียนที่เข้าร่วม</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">8 <span class="text-sm font-normal text-gray-500">แห่ง</span></p>
+                    </div>
+                </div>
+
+                <!-- สรุปจำนวนนักกีฬา -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl shadow-sm">
+                        🏃‍♂️
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">นักกีฬาทั้งหมด</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">120 <span class="text-sm font-normal text-gray-500">คน</span></p>
+                    </div>
+                </div>
+
+                <!-- ทำลายสถิติใหม่ -->
+                
+            </div>
+
+            <!-- ตารางสรุปเหรียญรางวัล (Medal Tally) -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-purple-900 text-white px-6 py-4 flex justify-between items-center">
+                    <h3 class="font-bold">ตารางสรุปเหรียญรางวัลรวม (Medal Tally)</h3>
+                    <span class="text-xs bg-purple-800 px-3 py-1 rounded-full border border-purple-700">อัปเดตล่าสุด: 11.45 น.</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-center border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-600 text-sm border-b border-gray-200">
+                                <th class="p-4 font-semibold w-20">อันดับ</th>
+                                <th class="p-4 font-semibold text-left">โรงเรียน/สังกัด</th>
+                                <th class="p-4 font-semibold w-24">🥇 ทอง</th>
+                                <th class="p-4 font-semibold w-24">🥈 เงิน</th>
+                                <th class="p-4 font-semibold w-24">🥉 ทองแดง</th>
+                                <th class="p-4 font-bold text-purple-800 w-28">รวมทั้งหมด</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm">
+                            <tr class="hover:bg-gray-50 transition bg-yellow-50/30">
+                                <td class="p-4 font-bold text-gray-800">1</td>
+                                <td class="p-4 text-left font-bold text-gray-900">โรงเรียนสาธิตมหาวิทยาลัยพะเยา</td>
+                                <td class="p-4 font-semibold text-yellow-600">5</td>
+                                <td class="p-4 font-semibold text-gray-500">3</td>
+                                <td class="p-4 font-semibold text-amber-700">2</td>
+                                <td class="p-4 font-bold text-purple-700">10</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition bg-gray-50/50">
+                                <td class="p-4 font-bold text-gray-800">2</td>
+                                <td class="p-4 text-left font-semibold text-gray-800">โรงเรียนสาธิตเกษตร</td>
+                                <td class="p-4 font-semibold text-yellow-600">3</td>
+                                <td class="p-4 font-semibold text-gray-500">4</td>
+                                <td class="p-4 font-semibold text-amber-700">1</td>
+                                <td class="p-4 font-bold text-purple-700">8</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition bg-orange-50/20">
+                                <td class="p-4 font-bold text-gray-800">3</td>
+                                <td class="p-4 text-left font-semibold text-gray-800">โรงเรียนสาธิตจุฬา</td>
+                                <td class="p-4 font-semibold text-yellow-600">2</td>
+                                <td class="p-4 font-semibold text-gray-500">2</td>
+                                <td class="p-4 font-semibold text-amber-700">5</td>
+                                <td class="p-4 font-bold text-purple-700">9</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="p-4 font-medium text-gray-600">4</td>
+                                <td class="p-4 text-left text-gray-700">โรงเรียนสาธิตมศว</td>
+                                <td class="p-4 text-gray-600">1</td>
+                                <td class="p-4 text-gray-600">1</td>
+                                <td class="p-4 text-gray-600">1</td>
+                                <td class="p-4 font-bold text-gray-800">3</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="p-4 font-medium text-gray-600">5</td>
+                                <td class="p-4 text-left text-gray-700">โรงเรียนสาธิตขอนแก่น</td>
+                                <td class="p-4 text-gray-600">0</td>
+                                <td class="p-4 text-gray-600">2</td>
+                                <td class="p-4 text-gray-600">1</td>
+                                <td class="p-4 font-bold text-gray-800">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- ส่วนท้าย (Footer) -->
@@ -401,28 +504,38 @@
             const btnSchedule = document.getElementById('btnSchedule');
             const btnHeats = document.getElementById('btnHeats');
             const btnAwards = document.getElementById('btnAwards');
+            const btnSummary = document.getElementById('btnSummary');
             
             const contentSchedule = document.getElementById('contentSchedule');
             const contentHeats = document.getElementById('contentHeats');
             const contentAwards = document.getElementById('contentAwards');
+            const contentSummary = document.getElementById('contentSummary');
 
-            btnSchedule.className = "py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap";
-            btnHeats.className = "py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap";
-            btnAwards.className = "py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap";
+            const inactiveClass = "py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap";
+            const activeClass = "py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold";
+
+            btnSchedule.className = inactiveClass;
+            btnHeats.className = inactiveClass;
+            btnAwards.className = inactiveClass;
+            if(btnSummary) btnSummary.className = inactiveClass;
 
             contentSchedule.classList.add('hidden');
             contentHeats.classList.add('hidden');
             contentAwards.classList.add('hidden');
+            if(contentSummary) contentSummary.classList.add('hidden');
 
             if (tab === 'schedule') {
-                btnSchedule.className = "py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold";
+                btnSchedule.className = activeClass;
                 contentSchedule.classList.remove('hidden');
             } else if (tab === 'heats') {
-                btnHeats.className = "py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold";
+                btnHeats.className = activeClass;
                 contentHeats.classList.remove('hidden');
             } else if (tab === 'awards') {
-                btnAwards.className = "py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold";
+                btnAwards.className = activeClass;
                 contentAwards.classList.remove('hidden');
+            } else if (tab === 'summary') {
+                if(btnSummary) btnSummary.className = activeClass;
+                if(contentSummary) contentSummary.classList.remove('hidden');
             }
         }
 
@@ -454,7 +567,7 @@
             if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
             noti.classList.add('hidden');
         });
-</script>
+    </script>
 
 </body>
 </html>
