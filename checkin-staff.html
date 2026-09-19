@@ -16,7 +16,7 @@
             background: #22c55e;
             position: absolute;
             box-shadow: 0 0 10px #22c55e;
-            animation: scan 2s infinite linear;
+            animation: scan 1.5s infinite linear;
         }
         @keyframes scan {
             0% { top: 10%; opacity: 0; }
@@ -29,7 +29,7 @@
 <body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white shadow-sm sticky top-0 z-40">
         <div class="border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
@@ -116,7 +116,9 @@
                     </h2>
                     
                     <!-- พื้นที่กล้อง -->
-                    <div class="bg-gray-900 rounded-xl overflow-hidden relative mb-5 aspect-[4/3] flex items-center justify-center border-4 border-gray-800 shadow-inner">
+                    <div class="bg-gray-900 rounded-xl overflow-hidden relative mb-2 aspect-[4/3] flex items-center justify-center border-4 border-gray-800 shadow-inner">
+                        <!-- จำลองภาพจากกล้อง -->
+                        <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center"></div>
                         <div class="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
                             <div class="w-32 h-32 border-2 border-white/50 rounded-lg relative overflow-hidden">
                                 <div class="absolute top-0 left-0 w-3 h-3 border-t-4 border-l-4 border-green-400"></div>
@@ -127,9 +129,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- ค้นหาด้วยมือ -->
-                    
+                    <p class="text-xs text-center text-gray-500">ยื่น QR Code ของนักกีฬาให้อยู่ในกรอบ</p>
                 </div>
             </div>
 
@@ -139,16 +139,52 @@
             </div>
 
         </div>
-
     </main>
+
+    <!-- ========================================== -->
+    <!-- หน้าต่าง Popup ยืนยันการรายงานตัว -->
+    <!-- ========================================== -->
+    <div id="scanResultModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col transform transition-all text-center">
+            
+            <div class="bg-green-500 p-6 text-center relative pb-10">
+                <h2 class="text-xl font-bold text-white tracking-wide">สแกนสำเร็จ!</h2>
+            </div>
+
+            <div class="p-6 flex flex-col items-center relative bg-white">
+                <!-- รูปนักกีฬา -->
+                <div class="w-24 h-24 bg-purple-50 border-4 border-white shadow-md rounded-full overflow-hidden mb-4 absolute -top-12">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Patsapong" alt="Athlete" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="mt-10 w-full space-y-1">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider font-bold mb-1">ข้อมูลนักกีฬา</p>
+                    <h3 class="text-xl font-bold text-gray-900">นายภัสพงษ์ สิริชัยวงศ์สกุล</h3>
+                    <p class="text-sm text-purple-700 font-medium pb-3 border-b border-gray-100">โรงเรียนสาธิตมหาวิทยาลัยพะเยา</p>
+                    
+                    <div class="pt-3">
+                        <p class="text-sm text-gray-600">รายการแข่งขัน</p>
+                        <p class="text-base font-bold text-gray-900">วิ่ง 60 เมตร (ชาย)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex gap-3">
+                <button onclick="closeScanModal()" class="w-1/2 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-3 rounded-xl transition shadow-sm">
+                    ยกเลิก
+                </button>
+                <button onclick="confirmCheckIn()" class="w-1/2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-md transition">
+                    ยืนยัน
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript ควบคุมระบบ -->
     <script>
-        // ดึง Event ID จาก URL (ถ้าไม่มีให้จำลองเป็น 101)
         const urlParams = new URLSearchParams(window.location.search);
         const currentEventId = parseInt(urlParams.get('eventId')) || 101;
 
-        // ข้อมูลรายการแข่งขันจำลอง
         const eventData = {
             id: currentEventId,
             name: currentEventId === 101 ? "วิ่ง 60 เมตร" : "รายการแข่งขัน",
@@ -159,12 +195,12 @@
             checkinTime: "07.30 น."
         };
 
-        // ข้อมูลนักกีฬาจำลองใน Heat 1 และ 2 พร้อมสถานะรายงานตัว
+        // ตั้งให้ นายภัสพงษ์ สถานะเป็น pending (รอยืนยัน)
         const heatsData = [
             {
                 heatTitle: "พวกที่ 1 (Heat 1)",
                 athletes: [
-                    { lane: 2, num: `${currentEventId}01`, fname: "ด.ช.ภัสพงษ์ สิริชัยวงศ์สกุล", school: "สาธิตพะเยา", status: "checked_in" },
+                    { lane: 2, num: `${currentEventId}01`, fname: "นายภัสพงษ์ สิริชัยวงศ์สกุล", school: "สาธิตมหาวิทยาลัยพะเยา", status: "pending" },
                     { lane: 3, num: `${currentEventId}02`, fname: "ด.ช.สมชาย ใจดี", school: "สาธิตเกษตร", status: "pending" },
                     { lane: 4, num: `${currentEventId}03`, fname: "ด.ช.มานพ รักเรียน", school: "สาธิตจุฬา", status: "pending" },
                     { lane: 5, num: `${currentEventId}04`, fname: "ด.ช.กิตติ มั่นคง", school: "สาธิตมศว", status: "checked_in" }
@@ -180,7 +216,6 @@
             }
         ];
 
-        // ฟังก์ชันสร้าง Badge สถานะ
         function getStatusBadge(status) {
             if (status === 'checked_in') {
                 return '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200 inline-block w-28 text-center">✅ รายงานตัวแล้ว</span>';
@@ -189,11 +224,9 @@
             }
         }
 
-        // ฟังก์ชัน Render หน้าจอ
         function renderEventDetails() {
             const container = document.getElementById('eventDetailsContainer');
             
-            // 1. สร้างกล่อง Header รายการแข่งขัน
             let html = `
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
                     <div class="flex flex-wrap justify-between items-start md:items-center bg-purple-50 p-4 rounded-xl border border-purple-100 gap-4">
@@ -216,7 +249,6 @@
                 </div>
             `;
 
-            // 2. สร้างตารางจัดพวก (Heats)
             heatsData.forEach((heat, heatIndex) => {
                 html += `
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
@@ -238,7 +270,6 @@
                 `;
 
                 heat.athletes.forEach((athlete) => {
-                    // กำหนดพื้นหลังให้แถวที่รายงานตัวแล้วดูแตกต่างเล็กน้อย
                     const rowBg = athlete.status === 'checked_in' ? 'bg-green-50/30' : 'hover:bg-gray-50';
                     
                     html += `
@@ -265,10 +296,44 @@
             container.innerHTML = html;
         }
 
-       
+        // โหลดข้อมูลเมื่อเปิดหน้า และจำลองการเด้งสแกนสำเร็จ
+        window.onload = () => {
+            renderEventDetails();
+            
+            // จำลองดีเลย์การสแกน 1.5 วินาที แล้วเด้ง Popup ยืนยันตัว
+            setTimeout(() => {
+                openScanModal();
+            }, 1500);
+        };
 
-        // โหลดข้อมูลเมื่อเปิดหน้า
-        window.onload = renderEventDetails;
+        // ฟังก์ชันเปิด/ปิด/ยืนยัน Modal
+        function openScanModal() {
+            document.getElementById('scanResultModal').classList.remove('hidden');
+            document.getElementById('scanResultModal').classList.add('flex');
+        }
+
+        function closeScanModal() {
+            document.getElementById('scanResultModal').classList.add('hidden');
+            document.getElementById('scanResultModal').classList.remove('flex');
+        }
+
+        function confirmCheckIn() {
+            // ปิด Popup
+            closeScanModal();
+            
+            // อัปเดตสถานะในตารางให้เป็น รายงานตัวแล้ว (จำลองสำหรับหมายเลข 10101)
+            const targetBib = currentEventId + "01";
+            const statusCell = document.getElementById('status-bib-' + targetBib);
+            const rowElem = document.getElementById('row-bib-' + targetBib);
+            
+            if(statusCell && rowElem) {
+                // เปลี่ยนป้ายเป็นสีเขียว
+                statusCell.innerHTML = '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200 inline-block w-28 text-center">✅ รายงานตัวแล้ว</span>';
+                // เปลี่ยนสีพื้นหลังแถว
+                rowElem.classList.remove('hover:bg-gray-50');
+                rowElem.classList.add('bg-green-50/30');
+            }
+        }
     
         // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
         function toggleNotification() {
@@ -281,6 +346,6 @@
             if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
             noti.classList.add('hidden');
         });
-</script>
+    </script>
 </body>
 </html>

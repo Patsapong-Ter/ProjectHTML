@@ -132,7 +132,7 @@
             <div class="border-t border-gray-100 bg-white px-8">
                 <div class="flex gap-8 text-sm font-medium overflow-x-auto hide-scrollbar">
                     <button onclick="switchTab('schedule')" id="btnSchedule" class="py-4 text-[#8B00C8] border-b-2 border-[#8B00C8] transition whitespace-nowrap font-bold">
-                        1. ตารางการแข่งขัน (สลับแถวได้)
+                        1. ตารางการแข่งขัน
                     </button>
                     <button onclick="switchTab('heats')" id="btnHeats" class="py-4 text-gray-500 hover:text-gray-700 transition whitespace-nowrap">
                         2. ตารางจัดพวก (Heats) 10 รายการ
@@ -148,12 +148,11 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- ส่วนที่ 1: ตารางการแข่งขัน (สลับ Row ขึ้นลงได้) -->
+        <!-- ส่วนที่ 1: ตารางการแข่งขัน -->
         <!-- ========================================== -->
         <div id="contentSchedule" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden p-6">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-bold text-gray-900 border-l-4 border-purple-600 pl-3">โปรแกรมการแข่งขันตลอดทั้งวัน (สลับลำดับคิวได้)</h2>
-                <span class="text-xs text-gray-500 bg-purple-50 px-3 py-1 rounded-full border border-purple-100">💡 คลิกปุ่ม ขึ้น/ลง เพื่อสลับแถวตารางแก้มือ</span>
+                <h2 class="text-lg font-bold text-gray-900 border-l-4 border-purple-600 pl-3">โปรแกรมการแข่งขันตลอดทั้งวัน</h2>
             </div>
             
             <div class="overflow-x-auto">
@@ -167,20 +166,20 @@
                             <th class="p-3 border border-purple-800 w-20 text-center">เพศ</th>
                             <th class="p-3 border border-purple-800">รอบ</th>
                             <th class="p-3 border border-purple-800 text-center w-28">จำนวนนักกีฬา</th>
-                            <th class="p-3 border border-purple-800 text-center w-32">สลับลำดับคิว</th>
+                            <th class="p-3 border border-purple-800 text-center w-36">สถานะ</th>
                         </tr>
                     </thead>
                     <tbody class="text-sm divide-y divide-gray-200" id="tableBody">
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">101</td><td class="p-3 border text-center">08.00 น.</td><td class="p-3 border">วิ่ง 60 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">102</td><td class="p-3 border text-center">08.20 น.</td><td class="p-3 border">วิ่ง 80 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">103</td><td class="p-3 border text-center">08.40 น.</td><td class="p-3 border">วิ่ง 100 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">104</td><td class="p-3 border text-center">09.00 น.</td><td class="p-3 border">วิ่ง 200 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">105</td><td class="p-3 border text-center">09.20 น.</td><td class="p-3 border">วิ่ง 400 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">106</td><td class="p-3 border text-center">09.40 น.</td><td class="p-3 border">วิ่ง 800 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">107</td><td class="p-3 border text-center">10.00 น.</td><td class="p-3 border">วิ่งข้ามรั้ว 100 เมตร</td><td class="p-3 border">มัธยมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">108</td><td class="p-3 border text-center">10.30 น.</td><td class="p-3 border">กระโดดไกล</td><td class="p-3 border">มัธยมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">109</td><td class="p-3 border text-center">11.00 น.</td><td class="p-3 border">ทุ่มน้ำหนัก</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
-                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">110</td><td class="p-3 border text-center">11.30 น.</td><td class="p-3 border">พุ่งแหลน</td><td class="p-3 border">รุ่นทั่วไป</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center space-x-1"><button onclick="moveRow(this, 'up')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬆️</button><button onclick="moveRow(this, 'down')" class="bg-gray-100 hover:bg-purple-100 px-2 py-1 rounded text-xs">⬇️</button></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">101</td><td class="p-3 border text-center">08.00 น.</td><td class="p-3 border">วิ่ง 60 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-green-200">✅ เสร็จสิ้น</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">102</td><td class="p-3 border text-center">08.20 น.</td><td class="p-3 border">วิ่ง 80 เมตร</td><td class="p-3 border">ประถมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-green-200">✅ เสร็จสิ้น</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">103</td><td class="p-3 border text-center">08.40 น.</td><td class="p-3 border">วิ่ง 100 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-blue-200">🏃 กำลังแข่งขัน</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">104</td><td class="p-3 border text-center">09.00 น.</td><td class="p-3 border">วิ่ง 200 เมตร</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border">คัดเลือก</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-amber-200">⏳ กำลังรอแข่ง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">105</td><td class="p-3 border text-center">09.20 น.</td><td class="p-3 border">วิ่ง 400 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">106</td><td class="p-3 border text-center">09.40 น.</td><td class="p-3 border">วิ่ง 800 เมตร</td><td class="p-3 border">มัธยมต้น</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">107</td><td class="p-3 border text-center">10.00 น.</td><td class="p-3 border">วิ่งข้ามรั้ว 100 เมตร</td><td class="p-3 border">มัธยมปลาย</td><td class="p-3 border text-center">หญิง</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">108</td><td class="p-3 border text-center">10.30 น.</td><td class="p-3 border">กระโดดไกล</td><td class="p-3 border">มัธยมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">109</td><td class="p-3 border text-center">11.00 น.</td><td class="p-3 border">ทุ่มน้ำหนัก</td><td class="p-3 border">ประถมปลาย</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
+                        <tr class="hover:bg-gray-50"><td class="p-3 border text-center font-bold text-purple-800">110</td><td class="p-3 border text-center">11.30 น.</td><td class="p-3 border">พุ่งแหลน</td><td class="p-3 border">รุ่นทั่วไป</td><td class="p-3 border text-center">ชาย</td><td class="p-3 border text-amber-700 font-bold">ชิงชนะเลิศ</td><td class="p-3 border text-center">8</td><td class="p-3 border text-center"><span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-gray-200">📅 กำลังจัดตาราง</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -203,16 +202,16 @@
                 }
 
                 const eventsList = [
-                    { id: 101, name: "วิ่ง 60 เมตร", round: "คัดเลือก", time: "08.00 น.", cat: "ประถมต้น", gender: "ชาย" },
-                    { id: 102, name: "วิ่ง 80 เมตร", round: "คัดเลือก", time: "08.20 น.", cat: "ประถมต้น", gender: "หญิง" },
-                    { id: 103, name: "วิ่ง 100 เมตร", round: "คัดเลือก", time: "08.40 น.", cat: "ประถมปลาย", gender: "ชาย" },
-                    { id: 104, name: "วิ่ง 200 เมตร", round: "คัดเลือก", time: "09.00 น.", cat: "ประถมปลาย", gender: "หญิง" },
-                    { id: 105, name: "วิ่ง 400 เมตร", round: "คัดเลือก", time: "09.20 น.", cat: "มัธยมต้น", gender: "ชาย" },
-                    { id: 106, name: "วิ่ง 800 เมตร", round: "ชิงชนะเลิศ", time: "09.40 น.", cat: "มัธยมต้น", gender: "หญิง" },
-                    { id: 107, name: "วิ่งข้ามรั้ว 100 เมตร", round: "ชิงชนะเลิศ", time: "10.00 น.", cat: "มัธยมปลาย", gender: "หญิง" },
-                    { id: 108, name: "กระโดดไกล", round: "ชิงชนะเลิศ", time: "10.30 น.", cat: "มัธยมปลาย", gender: "ชาย" },
-                    { id: 109, name: "ทุ่มน้ำหนัก", round: "ชิงชนะเลิศ", time: "11.00 น.", cat: "ประถมปลาย", gender: "ชาย" },
-                    { id: 110, name: "พุ่งแหลน", round: "ชิงชนะเลิศ", time: "11.30 น.", cat: "รุ่นทั่วไป", gender: "ชาย" }
+                    { id: 101, name: "วิ่ง 60 เมตร", round: "คัดเลือก", time: "08.00 น.", cat: "ประถมต้น", gender: "ชาย", status: "เสร็จสิ้น" },
+                    { id: 102, name: "วิ่ง 80 เมตร", round: "คัดเลือก", time: "08.20 น.", cat: "ประถมต้น", gender: "หญิง", status: "เสร็จสิ้น" },
+                    { id: 103, name: "วิ่ง 100 เมตร", round: "คัดเลือก", time: "08.40 น.", cat: "ประถมปลาย", gender: "ชาย", status: "กำลังแข่งขัน" },
+                    { id: 104, name: "วิ่ง 200 เมตร", round: "คัดเลือก", time: "09.00 น.", cat: "ประถมปลาย", gender: "หญิง", status: "กำลังรอแข่ง" },
+                    { id: 105, name: "วิ่ง 400 เมตร", round: "ชิงชนะเลิศ", time: "09.20 น.", cat: "มัธยมต้น", gender: "ชาย", status: "กำลังจัดตาราง" },
+                    { id: 106, name: "วิ่ง 800 เมตร", round: "ชิงชนะเลิศ", time: "09.40 น.", cat: "มัธยมต้น", gender: "หญิง", status: "กำลังจัดตาราง" },
+                    { id: 107, name: "วิ่งข้ามรั้ว 100 เมตร", round: "ชิงชนะเลิศ", time: "10.00 น.", cat: "มัธยมปลาย", gender: "หญิง", status: "กำลังจัดตาราง" },
+                    { id: 108, name: "กระโดดไกล", round: "ชิงชนะเลิศ", time: "10.30 น.", cat: "มัธยมปลาย", gender: "ชาย", status: "กำลังจัดตาราง" },
+                    { id: 109, name: "ทุ่มน้ำหนัก", round: "ชิงชนะเลิศ", time: "11.00 น.", cat: "ประถมปลาย", gender: "ชาย", status: "กำลังจัดตาราง" },
+                    { id: 110, name: "พุ่งแหลน", round: "ชิงชนะเลิศ", time: "11.30 น.", cat: "รุ่นทั่วไป", gender: "ชาย", status: "กำลังจัดตาราง" }
                 ];
 
                 const schools = ["สาธิตพะเยา", "สาธิตเกษตร", "สาธิตจุฬา", "สาธิตมศว", "สาธิตขอนแก่น", "สาธิตเชียงใหม่", "สาธิตบูรพา", "สาธิตรามคำแหง"];
@@ -225,13 +224,23 @@
 
                 eventsList.forEach(ev => {
                     const checkinTime = getCheckinTime(ev.time);
+
+                    // สร้าง Badge สถานะของรายการ
+                    let statusBadge = "";
+                    if(ev.status === "เสร็จสิ้น") statusBadge = `<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200">✅ เสร็จสิ้น</span>`;
+                    else if(ev.status === "กำลังแข่งขัน") statusBadge = `<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold border border-blue-200">🏃 กำลังแข่งขัน</span>`;
+                    else if(ev.status === "กำลังรอแข่ง") statusBadge = `<span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold border border-amber-200">⏳ กำลังรอแข่ง</span>`;
+                    else statusBadge = `<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold border border-gray-200">📅 กำลังจัดตาราง</span>`;
                     
                     document.write(`
                         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
                             <div class="flex flex-wrap justify-between items-start md:items-center bg-purple-50 p-4 rounded-xl border border-purple-100 mb-6 gap-4">
                                 <div>
-                                    <span class="text-xs font-bold text-purple-600 uppercase">รายการที่ ${ev.id}</span>
-                                    <h2 class="text-xl font-bold text-purple-900">${ev.name}</h2>
+                                    <div class="flex items-center gap-3 mb-1">
+                                        <span class="text-xs font-bold text-purple-600 uppercase">รายการที่ ${ev.id}</span>
+                                        ${statusBadge}
+                                    </div>
+                                    <h2 class="text-xl font-bold text-purple-900 mt-1">${ev.name}</h2>
                                     <div class="text-sm text-gray-600 flex flex-wrap gap-x-4 mt-1">
                                         <span>รุ่น: <strong>${ev.cat}</strong></span>
                                         <span>เพศ: <strong>${ev.gender}</strong></span>
@@ -269,7 +278,7 @@
                                                 <tr class="hover:bg-gray-50 transition">
                                                     <td class="p-2.5 border border-gray-200 text-center font-bold">${lane + 1}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center">${ev.id}0${lane}</td>
-                                                    <td class="p-2.5 border border-gray-200">${firstNames[lane-1]} ${lastNames[lane-1]}</td>
+                                                    <td class="p-2.5 border border-gray-200">${firstNames[lane-1]}${lastNames[lane-1]}</td>
                                                     <td class="p-2.5 border border-gray-200">${schools[lane-1]}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center text-purple-700 font-semibold">${stat}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center text-gray-600">${remark}</td>
@@ -304,7 +313,7 @@
                                                 <tr class="hover:bg-gray-50 transition">
                                                     <td class="p-2.5 border border-gray-200 text-center font-bold">${(lane % 4) + 2}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center">${ev.id}0${lane}</td>
-                                                    <td class="p-2.5 border border-gray-200">${firstNames[lane-1]} ${lastNames[lane-1]}</td>
+                                                    <td class="p-2.5 border border-gray-200">${firstNames[lane-1]}${lastNames[lane-1]}</td>
                                                     <td class="p-2.5 border border-gray-200">${schools[lane-1]}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center text-purple-700 font-semibold">${stat}</td>
                                                     <td class="p-2.5 border border-gray-200 text-center text-gray-600">${remark}</td>
@@ -419,9 +428,6 @@
                         <p class="text-3xl font-bold text-gray-900 mt-1">120 <span class="text-sm font-normal text-gray-500">คน</span></p>
                     </div>
                 </div>
-
-                <!-- ทำลายสถิติใหม่ -->
-                
             </div>
 
             <!-- ตารางสรุปเหรียญรางวัล (Medal Tally) -->

@@ -10,7 +10,6 @@
         body { font-family: 'Prompt', sans-serif; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        /* สไตล์สำหรับ Checkbox สีม่วง */
         .custom-checkbox:checked {
             background-color: #7e22ce;
             border-color: #7e22ce;
@@ -19,7 +18,7 @@
 </head>
 <body class="bg-[#F8F6FC] text-gray-800 flex flex-col min-h-screen">
 
-    <!-- แถบ Navbar ด้านบน (แบบมาตรฐานของระบบ) -->
+    <!-- แถบ Navbar ด้านบน -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,20 +53,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="p-4 hover:bg-gray-50 transition cursor-pointer">
-                                        <div class="flex gap-3">
-                                            <div class="text-2xl mt-1">✅</div>
-                                            <div class="flex-grow">
-                                                <p class="text-sm font-bold text-gray-800">ใบสมัครได้รับการอนุมัติแล้ว</p>
-                                                <p class="text-xs text-gray-500 mt-1">ตรวจสอบรายละเอียดในใบสมัครของฉัน</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <a href="profile.html" title="โปรไฟล์ของฉัน">
-                            <img src="https://ui-avatars.com/api/?name=User&background=F59E0B&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-yellow-400 shadow-sm hover:scale-105 transition">
+                            <img src="https://ui-avatars.com/api/?name=User&background=8B00C8&color=fff" alt="Profile" class="w-9 h-9 rounded-full border-2 border-purple-500 shadow-sm hover:scale-105 transition">
                         </a>
                     </div>
                 </div>
@@ -83,10 +73,6 @@
                     <a href="profile.html" class="text-gray-500 hover:text-purple-600 transition pb-1">Profile</a>
                     <div class="w-px h-5 bg-gray-300 mx-2 hidden sm:block"></div>
                     <a href="manage-athletes.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการ/อนุมัตินักกีฬา</a>
-                    <a href="approve-applications.html" class="text-orange-600 hover:text-orange-700 transition pb-1">อนุมัติการแข่งขัน</a>
-                    <a href="manage-schools.html" class="text-orange-600 hover:text-orange-700 transition pb-1">จัดการโรงเรียน</a>
-                    <a href="callroom-list.html" class="text-green-600 hover:text-green-700 transition pb-1">จุดรายงานตัว (Call Room)</a>
-                    <a href="referee-stats.html" class="text-red-600 hover:text-red-700 transition pb-1">กรอกสถิติ (ผู้ตัดสิน)</a>
                 </nav>
             </div>
         </div>
@@ -166,51 +152,90 @@
                     </div>
                 </div>
 
-                <!-- 3. เลือกประเภทกีฬา -->
+                <!-- 3. เลือกประเภทกีฬา และ กรอกสถิติเก่า -->
                 <div class="mb-10">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-lg font-bold text-purple-800 flex items-center gap-2">
                             <span class="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-sm">3</span>
-                            เลือกประเภทกีฬาที่ต้องการแข่งขัน
+                            เลือกประเภทกีฬา และสถิติเดิม
                         </h2>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full" id="eventCounter">
                             เลือกได้สูงสุด 4 รายการ (0/4)
                         </span>
                     </div>
+                    
+                    <p class="text-sm text-gray-500 mb-4 border-l-4 border-purple-500 pl-3">
+                        หากท่านมีสถิติการแข่งขันเดิม กรุณากรอกข้อมูลเพื่อใช้ประกอบการจัดสาย (Heats) <br>
+                        <span class="text-xs text-red-500">* หากไม่มีสถิติเดิม ให้เว้นว่างไว้ ระบบจะสุ่มจัดสายให้อัตโนมัติ</span>
+                    </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border border-gray-200 rounded-xl p-6 bg-gray-50/50">
                         <!-- ประเภทลู่ -->
                         <div>
                             <h3 class="font-bold text-sm text-gray-800 mb-4 border-b border-gray-200 pb-2">ประเภทลู่ (Track)</h3>
-                            <div class="space-y-3">
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 60 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 80 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 100 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 200 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 400 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 800 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่ง 1,500 เมตร</span></label>
+                            <div class="space-y-4">
+                                <!-- ตัวอย่างรายการที่ 1 -->
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer group mb-2">
+                                        <input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500" value="วิ่ง 60 เมตร" onchange="toggleStatsForm(this, 'stats-60m')">
+                                        <span class="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition">วิ่ง 60 เมตร</span>
+                                    </label>
+                                    <!-- ฟอร์มกรอกสถิติ (ซ่อนไว้ เริ่มต้น) -->
+                                    <div id="stats-60m" class="hidden pl-7 space-y-2">
+                                        <input type="text" placeholder="เวลาสถิติ (เช่น 07.80)" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                        <input type="text" placeholder="รายการที่ทำสถิติได้ล่าสุด" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                    </div>
+                                </div>
+                                
+                                <!-- ตัวอย่างรายการที่ 2 -->
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer group mb-2">
+                                        <input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500" value="วิ่ง 100 เมตร" onchange="toggleStatsForm(this, 'stats-100m')">
+                                        <span class="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition">วิ่ง 100 เมตร</span>
+                                    </label>
+                                    <div id="stats-100m" class="hidden pl-7 space-y-2">
+                                        <input type="text" placeholder="เวลาสถิติ (เช่น 11.45)" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                        <input type="text" placeholder="รายการที่ทำสถิติได้ล่าสุด" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                    </div>
+                                </div>
+                                
+                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600">วิ่ง 200 เมตร</span></label>
+                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600">วิ่ง 400 เมตร</span></label>
                             </div>
                         </div>
+
                         <!-- ประเภทข้ามรั้ว -->
                         <div>
                             <h3 class="font-bold text-sm text-gray-800 mb-4 border-b border-gray-200 pb-2">ประเภทข้ามรั้ว (Hurdles)</h3>
                             <div class="space-y-3">
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่งข้ามรั้ว 100 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่งข้ามรั้ว 110 เมตร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">วิ่งข้ามรั้ว 400 เมตร</span></label>
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer group mb-2">
+                                        <input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500" value="วิ่งข้ามรั้ว 110 เมตร" onchange="toggleStatsForm(this, 'stats-110m')">
+                                        <span class="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition">วิ่งข้ามรั้ว 110 เมตร</span>
+                                    </label>
+                                    <div id="stats-110m" class="hidden pl-7 space-y-2">
+                                        <input type="text" placeholder="เวลาสถิติ (เช่น 14.50)" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                        <input type="text" placeholder="รายการที่ทำสถิติได้ล่าสุด" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <!-- ประเภทลาน -->
                         <div>
                             <h3 class="font-bold text-sm text-gray-800 mb-4 border-b border-gray-200 pb-2">ประเภทลาน (Field)</h3>
                             <div class="space-y-3">
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">กระโดดไกล</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">เขย่งก้าวกระโดด</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">กระโดดสูง</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">ทุ่มน้ำหนัก</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">ขว้างจักร</span></label>
-                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600 group-hover:text-gray-900 transition">พุ่งแหลน</span></label>
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer group mb-2">
+                                        <input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500" value="กระโดดไกล" onchange="toggleStatsForm(this, 'stats-longjump')">
+                                        <span class="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition">กระโดดไกล</span>
+                                    </label>
+                                    <div id="stats-longjump" class="hidden pl-7 space-y-2">
+                                        <input type="text" placeholder="สถิติระยะทาง (เช่น 6.50 เมตร)" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                        <input type="text" placeholder="รายการที่ทำสถิติได้ล่าสุด" class="w-full px-3 py-1.5 border border-purple-200 rounded text-xs focus:ring-1 focus:ring-purple-500">
+                                    </div>
+                                </div>
+                                <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" class="event-checkbox custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"><span class="text-sm text-gray-600">ทุ่มน้ำหนัก</span></label>
                             </div>
                         </div>
                     </div>
@@ -238,7 +263,7 @@
                         <label class="flex items-start gap-3 cursor-pointer">
                             <input type="checkbox" class="mt-1 custom-checkbox w-4 h-4 rounded border-gray-300 text-yellow-600 focus:ring-yellow-500">
                             <span class="text-sm text-gray-700 leading-relaxed">
-                                ข้าพเจ้าขอยืนยันว่าเป็นผู้ปกครองโดยชอบธรรมของ <strong>ภัสพงษ์ สิริชัยวงศ์สกุล</strong> และอนุญาตให้เข้าแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49 หากเกิดบาดเจ็บ เสียหาย หรือได้รับอันตรายจากการแข่งขัน ข้าพเจ้าจะไม่เรียกร้องค่าเสียหายจากคณะกรรมการจัดการแข่งขัน แต่ประการใด
+                                ข้าพเจ้าขอยืนยันว่าเป็นผู้ปกครองโดยชอบธรรมของ <strong>ภัสพงษ์ สิริชัยวงศ์สกุล</strong> และอนุญาตให้เข้าแข่งขัน หากเกิดอันตรายจะไม่เรียกร้องค่าเสียหาย
                             </span>
                         </label>
                     </div>
@@ -249,13 +274,13 @@
                     <label class="flex items-start gap-3 cursor-pointer mb-6">
                         <input type="checkbox" class="mt-1 custom-checkbox w-4 h-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500">
                         <span class="text-sm text-gray-700">
-                            ข้าพเจ้ายินดีปฏิบัติตาม <a href="#" class="text-purple-600 font-medium hover:underline">ระเบียบการแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49</a> สังกัดกระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม ทุกประการ
+                            ข้าพเจ้ายินดีปฏิบัติตาม <a href="#" class="text-purple-600 font-medium hover:underline">ระเบียบการแข่งขันกีฬาสาธิตสามัคคี ครั้งที่ 49</a> ทุกประการ
                         </span>
                     </label>
 
                     <button type="button" onclick="window.location.href='my-applications.html'" class="w-full bg-[#8B00C8] hover:bg-[#7200A3] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition text-center">
-    บันทึกและส่งใบสมัคร
-</button>
+                        บันทึกและส่งใบสมัคร
+                    </button>
                 </div>
 
             </form>
@@ -269,7 +294,44 @@
         </div>
     </footer>
 
-<script>
+    <script>
+        // ฟังก์ชันแสดง/ซ่อน กล่องกรอกสถิติ ตามการ Checkbox
+        function toggleStatsForm(checkbox, formId) {
+            const form = document.getElementById(formId);
+            if(form) {
+                if (checkbox.checked) {
+                    form.classList.remove('hidden');
+                } else {
+                    form.classList.add('hidden');
+                    // เคลียร์ข้อมูลในช่องกรอกออกเมื่อกดยกเลิก
+                    const inputs = form.querySelectorAll('input[type="text"]');
+                    inputs.forEach(input => input.value = '');
+                }
+            }
+            updateEventCounter();
+        }
+
+        // ฟังก์ชันนับจำนวนรายการที่เลือก (จำกัด 4 รายการ)
+        function updateEventCounter() {
+            const checkboxes = document.querySelectorAll('.event-checkbox');
+            const counterLabel = document.getElementById('eventCounter');
+            let checkedCount = 0;
+
+            checkboxes.forEach(cb => {
+                if(cb.checked) checkedCount++;
+            });
+
+            counterLabel.innerText = `เลือกได้สูงสุด 4 รายการ (${checkedCount}/4)`;
+
+            // ถ้าเกิน 4 ให้เตือนและเอาออก
+            if(checkedCount > 4) {
+                alert("คุณสามารถเลือกลงแข่งขันได้สูงสุดเพียง 4 รายการเท่านั้น");
+                event.target.checked = false;
+                toggleStatsForm(event.target, 'stats-' + event.target.value.replace(/ /g, ''));
+                updateEventCounter();
+            }
+        }
+
         // ฟังก์ชันเปิด/ปิด Dropdown กระดิ่งแจ้งเตือน
         function toggleNotification() {
             const noti = document.getElementById('notiDropdown');
@@ -281,6 +343,6 @@
             if (e.target.closest('button[onclick="toggleNotification()"]') || noti.contains(e.target)) return;
             noti.classList.add('hidden');
         });
-</script>
+    </script>
 </body>
 </html>
