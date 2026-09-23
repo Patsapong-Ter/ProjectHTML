@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ส่งใบสมัครและคำรับรองแบบทีม - Track & Field</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Prompt', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#F8F6FC] text-gray-800 p-4 md:p-10">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- การ์ดจัดการใบสมัครทีม -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
+            
+            <div class="text-center mb-10 border-b border-gray-100 pb-8">
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">ส่งใบสมัครและคำรับรองสถานศึกษา (แบบทีม)</h1>
+                <p class="text-gray-500 text-sm">สำหรับผู้จัดการทีม: พิมพ์เอกสารเพื่อให้หัวหน้าสถานศึกษาลงนาม และอัปโหลดเข้าระบบ</p>
+            </div>
+
+            <!-- สรุปข้อมูลทีมก่อนพิมพ์ -->
+            <div class="bg-purple-50 rounded-xl p-6 mb-8 border border-purple-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h3 class="font-bold text-purple-900">สังกัดทีม: มหาวิทยาลัยพะเยา</h3>
+                    <p class="text-sm text-purple-700 mt-1">จำนวนนักกีฬาที่ลงทะเบียน: <strong>12 คน</strong> | รายการแข่งขัน: <strong>24 รายการ</strong></p>
+                </div>
+                <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1.5 rounded-full">สถานะ: รอส่งเอกสารยืนยัน</span>
+            </div>
+
+            <div class="space-y-8">
+                <!-- ขั้นตอนที่ 1: พิมพ์ใบสมัคร -->
+                <div class="relative pl-10 md:pl-12">
+                    <div class="absolute left-0 top-0 w-8 h-8 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center font-bold text-sm">1</div>
+                    <div class="border-l-2 border-dashed border-gray-200 absolute left-4 top-10 bottom-[-40px]"></div>
+                    
+                    <h2 class="text-lg font-bold text-gray-800 mb-2">พิมพ์ใบสมัครรวมทีม (Team Roster)</h2>
+                    <p class="text-sm text-gray-500 mb-4">
+                        ระบบได้ทำการรวบรวมรายชื่อนักกีฬาทั้งหมด จัดทำเป็นตารางพร้อมช่องลงนามสำหรับผู้จัดการทีมและผู้อำนวยการสถานศึกษาเรียบร้อยแล้ว
+                    </p>
+                    <button type="button" class="inline-flex items-center gap-2 bg-white border-2 border-purple-600 text-purple-700 hover:bg-purple-50 font-bold py-2.5 px-6 rounded-xl transition shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                        </svg>
+                        พิมพ์ / ดาวน์โหลด PDF
+                    </button>
+                </div>
+
+                <!-- ขั้นตอนที่ 2: นำไปเซ็น (แค่บอก Flow) -->
+                <div class="relative pl-10 md:pl-12">
+                    <div class="absolute left-0 top-0 w-8 h-8 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center font-bold text-sm">2</div>
+                    <div class="border-l-2 border-dashed border-gray-200 absolute left-4 top-10 bottom-[-40px]"></div>
+                    
+                    <h2 class="text-lg font-bold text-gray-800 mb-2">ลงนามรับรองเอกสาร</h2>
+                    <p class="text-sm text-gray-500">
+                        นำเอกสารที่พิมพ์แล้วไปให้ <strong>ผู้อำนวยการ/หัวหน้าสถานศึกษา</strong> และ <strong>ผู้จัดการทีม</strong> ลงนามรับรองด้วยลายมือจริง เพื่อยืนยันสถานะนักกีฬาทั้งทีม
+                    </p>
+                </div>
+
+                <!-- ขั้นตอนที่ 3: อัปโหลด -->
+                <div class="relative pl-10 md:pl-12">
+                    <div class="absolute left-0 top-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">3</div>
+                    
+                    <h2 class="text-lg font-bold text-gray-800 mb-2">อัปโหลดเอกสารที่ลงนามแล้ว</h2>
+                    <p class="text-sm text-gray-500 mb-4">สแกนหรือถ่ายรูปเอกสารที่ลงนามครบถ้วน (รองรับ PDF, JPG, PNG)</p>
+                    
+                    <!-- Dropzone -->
+                    <div class="flex items-center justify-center w-full mb-6">
+                        <label for="team-doc-upload" class="flex flex-col items-center justify-center w-full h-40 border-2 border-purple-200 border-dashed rounded-xl cursor-pointer bg-purple-50/30 hover:bg-purple-50 transition">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                <p class="mb-2 text-sm text-gray-600"><span class="font-bold text-purple-700">คลิกเพื่อเลือกไฟล์</span> หรือลากไฟล์มาวาง</p>
+                                <p class="text-xs text-gray-400">ไฟล์ต้องมีขนาดไม่เกิน 10MB</p>
+                            </div>
+                            <input id="team-doc-upload" type="file" class="hidden" accept=".pdf, image/*" />
+                        </label>
+                    </div>
+
+                    <button type="button" class="w-full bg-[#8B00C8] hover:bg-[#7200A3] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition text-center">
+                        ส่งเอกสารยืนยันการสมัคร
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
